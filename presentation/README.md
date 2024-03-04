@@ -62,7 +62,66 @@ __Retrieval Based Evaluation__:
 
 ## Architecture Overview
 
+__Modification of Attention Mechanism During Training__
 
+```
+# Computes a single (masked) self or cross attention head
+# Input: X, Z, vector representaitons of primary and context sequence
+# Output: V_tilda: Updated representations of tokens in X, folding in information from tokens in Z
+# Parameters: B_q, A_q, B_k, A_k, B_v, A_v, B_v, A_v
+
+Attention(X, Z):
+ Q = (B_q @ A_q) @ X + b_q @ ones.T
+ K = (B_k @ A_k) @ Z + b_k @ ones.T
+ V = (B_v @ A_v) @ Z + b_v @ ones.T
+ S = K.T @ Q
+ S = mask(S) # apply mask
+ V_tilda = dot(V, softmax(S / sqrt(d_attn)))
+ return V_tilda
+```
+
+__Modification of MHAttention__
+
+```
+# Input X, Z vector representaitons of primary and context sequence
+# Output: V_tilda: Updated representations of tokens in X, folding in information from tokens in Z
+
+num_groups = 4
+group_size = len(X) / num_groups
+
+# Split sequences into groups
+groups = [lst[i:i + num_groups] for i in range(0, len(X), num_groups)]
+
+# Shift Sequences
+shifted_groups = 
+
+# For a given group we have two patterns, X and X_shift
+MHAttention(X, Z):
+ for h_1 in H[:len(h)/2]:
+  Y_h = Attention(X, Z)
+ for h_2 in H[len(h)/2:]:
+  Y_h = Attention(X_shift, Z_shift)
+
+ Y = [Y_1, Y_2 ..... Y_H]...
+ return V_tilda = (B_o @ A_o) + b_o @ ones.T
+```
+
+__Implementation of S2 Attention (From Paper)__
+```
+# B: batch size; S: sequence length or number of tokens; G: group size;
+# H: number of attention heads; D: dimension of each attention head
+
+# qkv in shape (B, N, 3, H, D), projected queries, keys, and values
+# Key line 1: split qkv on H into 2 chunks, and shift G/2 on N
+qkv = cat((qkv.chunk(2, 3)[0], qkv.chunk(2, 3)[1].roll(-G/2, 1)), 3).view(B*N/G,G,3,H,D)
+
+# standard self-attention function
+out = self_attn(qkv)
+
+# out in shape (B, N, H, D)
+# Key line 2: split out on H into 2 chunks, and then roll back G/2 on N
+out = cat((out.chunk(2, 2)[0], out.chunk(2, 2)[1].roll(G/2, 1)), 2)
+```
 
 ## Critical Analysis
 
@@ -84,7 +143,7 @@ The original LoRA paper uses much more Robust experiments, including a variety o
 2. Llama 2 Paper: Touvron et al. Llama 2: Open Foundation and Fine-Tuned Chat Models [Paper](https://arxiv.org/abs/2307.09288)
 3. Proof-Pile: Dataset used for long sequence modelling evaluation [Link](https://huggingface.co/datasets/hoskinson-center/proof-pile)
 4. LongChat: Data used for passkey retrieval task: [Link](https://lmsys.org/blog/2023-06-29-longchat/)
-5. Learn more about longLoRA through this YouTube [Video](https://www.youtube.com/watch?v=hf5N-SlqRmA&t=812s&pp=ygUIbG9uZ2xvcmE%3D)
+5. Learn more about LongLoRA through this YouTube [Video](https://www.youtube.com/watch?v=hf5N-SlqRmA&t=812s&pp=ygUIbG9uZ2xvcmE%3D)
 
 
 ## Appendix
