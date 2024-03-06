@@ -15,7 +15,7 @@ __Solution__:
 
 ![image](https://github.com/edmundhhn/transformers-theory-and-practice/assets/97279107/3cc4eeed-fe73-4c77-be54-0fd584cdca4d)
 
-## Question One: How Do You Think LoRA Performs for Longer Context Lengths?
+## Question One: Do You Think LoRA Performs Well for Longer Sequence Lengths? 
 
 - __LoRA Recap__: Hypothesizes that weight updates in pretrained models have a low intrinsic rank during adaptation. Thus, weights are updated with a low rank decomposition, increasing efficiency and reducing the number of trainable parameters
 
