@@ -23,7 +23,7 @@ $$W + \Delta W = W + BA \textrm{ where } B \in \mathbb{R}^{d \times r}, A \in \m
 
  ![image](https://github.com/edmundhhn/transformers-theory-and-practice/assets/97279107/3c45da3d-cf83-4c56-aa4e-30553b4a483e)
 
-__THe Problem with LoRA__ :
+__The Problem with LoRA__ :
 - As context length increases, __LoRA is neither effective nor efficient__. Longer contexts result in a
   - __HIGHER PERPLEXITY__
   - __HIGHER COMPUTATIONAL COSTS__
