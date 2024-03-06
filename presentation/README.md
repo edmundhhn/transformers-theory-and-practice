@@ -15,7 +15,7 @@ __Solution__:
 
 ![image](https://github.com/edmundhhn/transformers-theory-and-practice/assets/97279107/3cc4eeed-fe73-4c77-be54-0fd584cdca4d)
 
-## Question One: How Does LongLoRA improve over LoRA?
+## Question One: How Do You Think LoRA Performs for Longer Context Lengths?
 
 - __LoRA Recap__: Hypothesizes that weight updates in pretrained models have a low intrinsic rank during adaptation. Thus, weights are updated with a low rank decomposition, increasing efficiency and reducing the number of trainable parameters
 
@@ -44,7 +44,7 @@ __Shifted Sparse Attention ($S^2$ Attention)__:
 ![image](https://github.com/edmundhhn/transformers-theory-and-practice/assets/97279107/d9ddbf42-5cf5-4987-8ec0-74da9ed25e6b)
 
 
-## Question Two: How is Long Context Performance Measured?
+## Question Two: How Do You Think the Performance on Longer Contexts can be Measured? 
 
 __Long Sequence Language Modelling__: 
 - Perplexity is evaluated on proof-pile and PG19 datasets. Under various training context lengths, the authors show that better perplexity is achieved by increasing the perplexity from 8192 to 32768
