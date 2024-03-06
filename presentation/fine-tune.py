@@ -113,6 +113,7 @@ def train():
         replace_llama_attn(training_args.use_flash_attn, training_args.use_full_attn)
 
     # Set RoPE scaling factor
+    # Part of the ROTARY POSITIONAL EMBEDDING (RoFormer)
     config = transformers.AutoConfig.from_pretrained(
         model_args.model_name_or_path,
         cache_dir=training_args.cache_dir,
