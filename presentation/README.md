@@ -23,8 +23,11 @@ $$W + \Delta W = W + BA \textrm{ where } B \in \mathbb{R}^{d \times r}, A \in \m
 
  ![image](https://github.com/edmundhhn/transformers-theory-and-practice/assets/97279107/3c45da3d-cf83-4c56-aa4e-30553b4a483e)
 
-__Problem__ :
-- As context length increases, LoRA is neither effective nor efficient. Longer contexts result in a higher perplexity and computational costs when compared to the full-fine tuning procedure.
+__THe Problem with LoRA__ :
+- As context length increases, __LoRA is neither effective nor efficient__. Longer contexts result in a
+  - __HIGHER PERPLEXITY__
+  - __HIGHER COMPUTATIONAL COSTS__
+When compared to the full fine tuning method
 
 __Solution__:
 Two important changes make the LongLoRA suprerior to LoRA for longer contexts:
@@ -46,7 +49,9 @@ __Shifted Sparse Attention ($S^2$ Attention)__:
 
 ## Question Two: How Do You Think the Performance on Longer Contexts can be Measured? 
 
-__Long Sequence Language Modelling__: 
+__IMPORTANT: FINE TUNED ON THE LLAMA-2 MODEL__
+
+__Perplexity & Long Sequence Language Modelling__: 
 - Perplexity is evaluated on proof-pile and PG19 datasets. Under various training context lengths, the authors show that better perplexity is achieved by increasing the perplexity from 8192 to 32768
 - For the 7B model, perplexity decreases from 2.72 to 2.50, for the 13B model, perplexity reduces from 2.60 to 2.32. 
 
@@ -55,8 +60,14 @@ __Long Sequence Language Modelling__:
 
 __Retrieval Based Evaluation__: 
 - Topic Retrieval: retrieving target topics from a very long conversation with lengths varying from 3k, 6k, 10k, 13k and 16k. Using a LongLoRA model fine tunde on Llama 13B with a 18k context length, comparable performance is achieved to the state of the art LongChat-13B, despite the lower fine tuning costs.
+<img width="954" alt="image" src="https://github.com/edmundhhn/transformers-theory-and-practice/assets/97279107/f48987ba-58ac-4b86-be3b-c9a8ae23697f">
+
+
 ![image](https://github.com/edmundhhn/transformers-theory-and-practice/assets/97279107/1e367f94-5f6f-4cbf-a88a-60ccf5554a08)
-- Passkey Retrieval: Finding a random passkey hidden in a long document. In this experiemnt, Llama 7B was finetuned with LongLoRA using 32768 context length. It was also found that modifying max position interpolation to 48k resulted in extended performance, without further fine tuning. 
+- Passkey Retrieval: Finding a random passkey hidden in a long document. In this experiemnt, Llama 7B was finetuned with LongLoRA using 32768 context length. It was also found that modifying max position interpolation to 48k resulted in extended performance, without further fine tuning.
+  
+<img width="645" alt="image" src="https://github.com/edmundhhn/transformers-theory-and-practice/assets/97279107/45ca67b1-7e97-4246-ab29-38c45fc23627">
+
 ![image](https://github.com/edmundhhn/transformers-theory-and-practice/assets/97279107/002cf882-be7f-4f40-b205-093999675f96)
 
 
@@ -93,7 +104,7 @@ group_size = len(X) / num_groups
 groups = [lst[i:i + num_groups] for i in range(0, len(X), num_groups)]
 
 # Shift Sequences
-shifted_groups = 
+shifted_groups = [shift(group_size/2) for group in groups]
 
 # For a given group we have two patterns, X and X_shift
 MHAttention(X, Z):
@@ -142,6 +153,10 @@ __Emperical Metrics__
 
 __Comparing to LoRA__
 The original LoRA paper uses much more Robust experiments, including a variety of base models including BERT, RoBERTA, GPT-2 and GPT-3, for a variety of downstream tasks (Including natural language generation and understanding) on very mainstream and standardized datasets (e.g. GLUE, wikiSQL). Although this paper may have been impeded by resource costs, the comparisons on these benchmarks would be a lot more reliable. 
+
+## Conclusion
+
+By making two slight but impactful changes - making embeddings/normalization trainable, and using S2 attention, LongLoRA adapts the LoRA model to larger contexts. Performance has proven to be impressive in terms of perplexity and retrieval tasks. 
 
 ## Resource Links
 
