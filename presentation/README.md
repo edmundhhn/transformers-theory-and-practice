@@ -8,7 +8,7 @@ Github [Repository](https://github.com/dvlab-research/LongLoRA)
 ## Overview
 
 __Problem__: 
-- Training transformers with longer sequence lengths is a major problem, as computational costs scale $O(n^2)$ with context length. This begs the question of whether there is a method to extend the context window effectively. 
+- Training transformers with __longer sequence lengths is a major problem, as computational costs scale $O(n^2)$ with context length__. This begs the question of whether there is a method to extend the context window effectively. 
 
 __Solution__:
 - By making two notable changes to the LoRA model, LongLoRA demonstrates accuracy close to that of full fine tuning whilst utilizing far fewer GPU resources and training hours.
