@@ -186,7 +186,7 @@ def train():
 
     data_collator = DataCollatorForLanguageModeling(tokenizer=tokenizer, mlm=False)
 
-    ################# APPLYING LORA CONFIGURATIONS
+    ############################## APPLYING LORA CONFIGURATIONS ##############################
     if training_args.low_rank_training:
         if model_args.model_type == "gpt-neox":
             # added `dense` to match with llama as the basic LoRA would only target 'query_key_value'
@@ -204,9 +204,9 @@ def train():
         )
         model = get_peft_model(model, config)
         
-        #### ENABLE THE TRAINABLE PARAMS TO INCLUDE THOSE OF EMBEDDINGS AND NORMALIZATION
+        #### ENABLE THE TRAINABLE PARAMS TO INCLUDE THOSE OF EMBEDDINGS AND NORMALIZATION ##############################
         [p.requires_grad_() for n, p in model.named_parameters() if any([k in n for k in training_args.trainable_params.split(",")])]
-        ####
+        ################################################################################################################
     
     model.config.use_cache = False         # required for gradient checkpointing
     model.enable_input_require_grads()     # required for gradient checkpointing
