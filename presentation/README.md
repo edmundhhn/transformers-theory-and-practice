@@ -1,7 +1,7 @@
 # LongLoRA
 
 Original [Paper](https://arxiv.org/abs/2309.12307): LongLoRA: Efficient Fine-tuning of Long-Context Large Language Models 
-Yukang Chen, Shengju Qian, Haotian Tang, Xin Lai, Zhijian Liu, Song Han, Jiaya Jia, 2013
+Yukang Chen, Shengju Qian, Haotian Tang, Xin Lai, Zhijian Liu, Song Han, Jiaya Jia, 2023
 
 Github [Repository](https://github.com/dvlab-research/LongLoRA)
 
