@@ -123,6 +123,12 @@ out = self_attn(qkv)
 out = cat((out.chunk(2, 2)[0], out.chunk(2, 2)[1].roll(G/2, 1)), 2)
 ```
 
+## CODE DEMO
+
+- LongLoRA_Code_Demo.ipynb Execution of inference
+- fine-tune.py Fine Tune LongLoRA
+- llama_attn_replace.py View the S2 attention mechanism
+
 ## Critical Analysis
 
 __Dataset Usage__
