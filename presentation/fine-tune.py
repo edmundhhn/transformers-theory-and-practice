@@ -109,21 +109,27 @@ def train():
     if model_args.model_type == "gpt-neox":
         replace_gpt_neox_attn(training_args.use_flash_attn, training_args.use_full_attn)
     else:
+
+        ############### ADDING THE S2 ATTENTION MECHANISM ###############
         assert model_args.model_type == "llama", "Only support llama and gpt-neox for now"
         replace_llama_attn(training_args.use_flash_attn, training_args.use_full_attn)
+        ##################################################################
 
-    # Set RoPE scaling factor
-    # Part of the ROTARY POSITIONAL EMBEDDING (RoFormer)
+    
     config = transformers.AutoConfig.from_pretrained(
         model_args.model_name_or_path,
         cache_dir=training_args.cache_dir,
     )
-
+    
+    ############### USING THE ROTAORY POSITIONAL EMBEDDING - REFER TO ROFORMER PRESENTATION ###############
     orig_rope_scaling = getattr(config, "rope_scaling", None)
     if orig_rope_scaling is None:
         orig_rope_scaling = {"factor": 1}
 
     orig_rope_scaling_factor = orig_rope_scaling["factor"] if "factor" in orig_rope_scaling.keys() else 1
+
+    #########################################################################################################
+    
     orig_ctx_len = getattr(config, "max_position_embeddings", None)
     if orig_ctx_len:
         orig_ctx_len *= orig_rope_scaling_factor
@@ -142,7 +148,11 @@ def train():
     tokenizer = transformers.AutoTokenizer.from_pretrained(
         model_args.model_name_or_path,
         cache_dir=training_args.cache_dir,
+
+        ############### SET THE MAX LENGTH OF THE CONTEXT ###############
         model_max_length=training_args.model_max_length,
+        ###############################################################
+        
         padding_side="right",
         use_fast=True,
     )
@@ -176,6 +186,7 @@ def train():
 
     data_collator = DataCollatorForLanguageModeling(tokenizer=tokenizer, mlm=False)
 
+    ################# APPLYING LORA CONFIGURATIONS
     if training_args.low_rank_training:
         if model_args.model_type == "gpt-neox":
             # added `dense` to match with llama as the basic LoRA would only target 'query_key_value'
@@ -192,9 +203,11 @@ def train():
             task_type="CAUSAL_LM",
         )
         model = get_peft_model(model, config)
-        # enable trainable params
+        
+        #### ENABLE THE TRAINABLE PARAMS TO INCLUDE THOSE OF EMBEDDINGS AND NORMALIZATION
         [p.requires_grad_() for n, p in model.named_parameters() if any([k in n for k in training_args.trainable_params.split(",")])]
-
+        ####
+    
     model.config.use_cache = False         # required for gradient checkpointing
     model.enable_input_require_grads()     # required for gradient checkpointing
     model.gradient_checkpointing_enable()  # enable gradient checkpointing
