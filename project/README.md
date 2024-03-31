@@ -1,4 +1,7 @@
 # Automated Pricing for Sellers on Mercari
+__Authors: Thao Nguyen, Edmund Hui__
+
+Play with our project on [Huggingface Spaces](https://huggingface.co/spaces/edmundhui/mercari-price-prediction) ! We take 25% comission for every successful sale using our application.
 
 ## Overview
 
@@ -18,14 +21,14 @@
 
 Our [dataset](https://www.kaggle.com/competitions/mercari-price-suggestion-challenge/data) contains 1.4+ million listings of items being sold on Mercari. Each listing contains the following information
 
-- train_id or test_id - the id of the listing
-- name - the title of the listing. Note that we have cleaned the data to remove text that look like prices (e.g. $20) to avoid leakage. These removed prices are represented as [rm]
-- item_condition_id - the condition of the items provided by the seller
-- category_name - category of the listing
-- brand_name
-- price - the price that the item was sold for. This is the target variable that you will predict. The unit is USD. This column doesn't exist in test.tsv since that is what you will predict.
-- shipping - 1 if shipping fee is paid by seller and 0 by buyer
-- item_description - the full description of the item. Note that we have cleaned the data to remove text that look like prices (e.g. $20) to avoid leakage. These removed prices are represented as [rm]
+- __train_id or test_id__ - the id of the listing
+- __name__ - the title of the listing. Note that we have cleaned the data to remove text that look like prices (e.g. $20) to avoid leakage. These removed prices are represented as [rm]
+- __item_condition_id__ - the condition of the items provided by the seller
+- __category_name__ - category of the listing
+- __brand_name__
+- __price__ - the price that the item was sold for. This is the target variable that you will predict. The unit is USD. This column doesn't exist in test.tsv since that is what you will predict.
+- __shipping__ - 1 if shipping fee is paid by seller and 0 by buyer
+- __item_description__ - the full description of the item. Note that we have cleaned the data to remove text that look like prices (e.g. $20) to avoid leakage. These removed prices are represented as [rm]
 
 ## Project Steps
 
@@ -39,7 +42,7 @@ Our [dataset](https://www.kaggle.com/competitions/mercari-price-suggestion-chall
 
 4. Create a Class for a BERT Regressor which utilizes a regression head.
 
-   <img width="324" alt="BERT" src="https://github.com/edmundhhn/transformers-theory-and-practice/assets/97279107/4a6fa008-f6b6-4092-844b-8cb4dcd6540f">
+   <img width="550" alt="BERT" align=”middle” src="https://github.com/edmundhhn/transformers-theory-and-practice/assets/97279107/4a6fa008-f6b6-4092-844b-8cb4dcd6540f">
 
 6. Select suitable hyperparameters and fine tune the model for X epochs on the data, recording the validation loss per epoch. 
 
