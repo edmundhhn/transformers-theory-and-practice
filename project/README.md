@@ -54,6 +54,12 @@ Our [dataset](https://www.kaggle.com/competitions/mercari-price-suggestion-chall
 
 9. Finalize project with front-end interface
 
+---
+## CODE Demonstration
+
+---
+
+
 ## Critical Analysis
 
 - __Impact__:
@@ -72,10 +78,6 @@ With the pricing model, sellers have a tool that can help them set a price easie
   - __Trends__: We need a model that has a deep understanding of whats "trendy" e.g. apple airpods, carhartt jackets
   - __Different Businesses__: We can attempt this method in other more stable marketplaces, for example that of Amazon and Walmart. These may be harder as the range of products they have are even broader. But the data will be broader
   - __Enhanced Tools__: Given that we have a model that knows which listings sell for the highest price, can we now create a tool which can optimize descriptions for sellers to maximize their profits? Another idea is a system that can provide recommendations to sellers on what kind of items that they should procure (e.g. When at the bins at goodwill) in order to turn the greatest profits on their sales. 
-
----
-## CODE Demonstration
----
 
 ## Resource Links
 
