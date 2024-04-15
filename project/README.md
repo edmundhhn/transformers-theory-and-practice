@@ -34,13 +34,14 @@ Our [dataset](https://www.kaggle.com/competitions/mercari-price-suggestion-chall
 
 1. __Reformat Data into Single String__ To feed data into BERT, we extract relevant information from columns are combined into a single line of text. We set the target variable as the price of the item
 
-![image](https://github.com/edmundhhn/transformers-theory-and-practice/assets/97279107/24bd0807-b838-492b-94e0-26a8179ac604)
+<img width="886" alt="image" src="https://github.com/edmundhhn/transformers-theory-and-practice/assets/97279107/805866d0-f86f-4894-b627-b3f229cd2882">
+
 
 2. __Simple preprocessing__ Remove mentions of price to avoid data leakage
 
 3. __Create Dataset and DataLoader__ objects specific to our dataset, adding batch size of 32, shuffle during training. We train test validation split with __80/10/10__
 
-4. Create a Class for a BERT Regressor which utilizes a regression head.
+5. Create a Class for a BERT Regressor which utilizes a regression head.
   __Recap:__ BERT is a a multi-layer bidirectional Transformer encoder. This architecture allows BERT to consider the full context of a word by looking at the words that come before and after it allowing it to understand the nuances of language.
    We add a linear layer at the end of the BERT model which uses the last layer weights of the BERT model to regress against a final price prediction
 
