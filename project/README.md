@@ -32,23 +32,27 @@ Our [dataset](https://www.kaggle.com/competitions/mercari-price-suggestion-chall
 
 ## Project Steps
 
-1. Relevant information from columns are combined into a single line of text. Set the prices as target variable 
+1. To feed data into BERT, we extract relevant information from columns are combined into a single line of text. We set the target variable as the price of the item
 
 ![image](https://github.com/edmundhhn/transformers-theory-and-practice/assets/97279107/24bd0807-b838-492b-94e0-26a8179ac604)
 
 2. Simple preprocessing: Remove mentions of price to avoid data leakage
 
-3. Create Dataset and DataLoader objects specific to our dataset.
+3. Create Dataset and DataLoader objects specific to our dataset. 
 
-4. Create a Class for a BERT Regressor which utilizes a regression head.
+4. Create a Class for a BERT Regressor which utilizes a regression head. We add a linear layer at the end of the BERT model which uses the last layer weights of the BERT model to regress against a final price prediction
+  
+   - Attention mask to account for variable length strings
+   - Dropout layer to prevent overfitting 
 
    <img width="550" alt="BERT" align=”middle” src="https://github.com/edmundhhn/transformers-theory-and-practice/assets/97279107/4a6fa008-f6b6-4092-844b-8cb4dcd6540f">
 
-6. Select suitable hyperparameters and fine tune the model for X epochs on the data, recording the validation loss per epoch. 
+6. Select suitable hyperparameters and fine tune the model for 3 epochs on the data, recording the validation loss per epoch. 
 
 7. Test the model on testing dataset and report metrics
+   - Our final RMSE on the model is 10.3 with MAE of 12.1. Although this is not extremely accurate we can still gauge a rough idea of the price our item should be selling at
 
-8. Finalize project with front-end interface
+9. Finalize project with front-end interface
 
 ## Critical Analysis
 
@@ -59,7 +63,7 @@ With the pricing model, sellers have a tool that can help them set a price easie
   - __Streamlines the Pricing Process__: Our tool can save time and cost for both parties in deciding what is the optimum price for a product 
  
 - __Disadvantages__ :
-  - __Accuracy__: Should not be taken as the final pricing agent. There is still a significant gap between the prediction and actual price
+  - __Accuracy__: Should not be taken as the final pricing agent. There is still a significant gap between the prediction and actual price. There is heavy variation of a price of an item even if its the exact same - information imperfection. 
   - __Limitations of Data__:  Does not capture many aspects of a product that could impact its selling price, e.g. future trends, seller reputation, age of item, rarity etc... As we know in online shopping, the biggest determination of a product is often the image.
   - __Limitations with Model__: A lot of our data is originally structured, which is somewhat under-utilized by a LLM such as BERT.
 
