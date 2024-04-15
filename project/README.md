@@ -41,6 +41,8 @@ Our [dataset](https://www.kaggle.com/competitions/mercari-price-suggestion-chall
 3. Create Dataset and DataLoader objects specific to our dataset. 
 
 4. Create a Class for a BERT Regressor which utilizes a regression head. We add a linear layer at the end of the BERT model which uses the last layer weights of the BERT model to regress against a final price prediction
+
+   __Recap:__ BERT's architecture utilizes a multi-layer bidirectional Transformer encoder, which is a type of neural network originally developed for machine translation. This architecture allows BERT to consider the full context of a word by looking at the words that come before and after it, significantly enhancing its ability to understand the nuances of language.
   
    - Attention mask to account for variable length strings
    - Dropout layer to prevent overfitting 
@@ -50,12 +52,12 @@ Our [dataset](https://www.kaggle.com/competitions/mercari-price-suggestion-chall
 6. Select suitable hyperparameters and fine tune the model for 3 epochs on the data, recording the validation loss per epoch. 
 
 7. Test the model on testing dataset and report metrics
-   - Our final RMSE on the model is 10.3 with MAE of 12.1. Although this is not extremely accurate we can still gauge a rough idea of the price our item should be selling at
+   - Our final RMSE on the model is 51 with MAE of 37. Although this is not extremely accurate we can still gauge a rough idea of the price our item should be selling at
 
 9. Finalize project with front-end interface
 
 ---
-## CODE Demonstration
+## CODE Demonstration with Gradio
 
 ---
 
@@ -70,7 +72,9 @@ With the pricing model, sellers have a tool that can help them set a price easie
  
 - __Disadvantages__ :
   - __Accuracy__: Should not be taken as the final pricing agent. There is still a significant gap between the prediction and actual price. There is heavy variation of a price of an item even if its the exact same - information imperfection. 
-  - __Limitations of Data__:  Does not capture many aspects of a product that could impact its selling price, e.g. future trends, seller reputation, age of item, rarity etc... As we know in online shopping, the biggest determination of a product is often the image.
+  - __Limitations of Data__:
+      - Does not capture many aspects of a product that could impact its selling price, e.g. Seller reputation, age of item, rarity etc... Importantly, the image
+      - Using historical data does not account for trends 
   - __Limitations with Model__: A lot of our data is originally structured, which is somewhat under-utilized by a LLM such as BERT.
 
 - __Next Steps__
