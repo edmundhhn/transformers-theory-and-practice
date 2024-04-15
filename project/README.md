@@ -54,7 +54,7 @@ Our [dataset](https://www.kaggle.com/competitions/mercari-price-suggestion-chall
 8. __Testing__ Test the model on testing dataset and report metrics
    - Our final RMSE on the model is 11.22 with MAE of 9.51. Although this is not extremely accurate the seller can still gauge a rough idea of the price our item should be selling at
 
-9. Finalize project with the front-end interface in Gradio.
+9. __Visualization__ Finalize project with the front-end interface in Gradio.
 
 ---
 ## CODE and Gradio Demonstration 
@@ -70,11 +70,11 @@ With the pricing model, sellers have a tool that can help them set a price easie
   - __Streamlines the Pricing Process__: Our tool can save time and cost for both parties in deciding what is the optimum price for a product 
  
 - __Disadvantages__ :
-  - __Accuracy__: Should not be taken as the final pricing agent. There is still a significant gap between the prediction and actual price. There is heavy variation of a price of an item even if its the exact same - information imperfection. 
+  - __Accuracy__: Should not be taken as the final pricing agent. There is still a significant gap between the prediction and actual price.
   - __Limitations of Data__:
       - Does not capture many aspects of a product that could impact its selling price, e.g. Seller reputation, age of item, rarity etc... Importantly, the image is not a part of the dataset which is a very critical identifier of item price
       - Historical data will not account/predict future trends
-      - Data contains listings instead of actual items that sold. This includes items that did not sell too. 
+      - Data contains listings instead of actual items that sold. This includes items that did not sell too, introducing inaccuracies and high variance to the training set.
   - __Limitations with Model__: A lot of our data is originally structured, which is somewhat under-utilized by a LLM such as BERT.
 
 - __Next Steps__ :
