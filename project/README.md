@@ -7,7 +7,7 @@ Play with our project on [Huggingface Spaces](https://huggingface.co/spaces/edmu
 
 - __Context__: Mercari is a Japanese e-comemrce company. Their main product, the Mercari marketplace app is a place for buyers and sellers to buy sell and trade items securely and hosts over 23 million users every year. 
 
-- __Problem__: A major obstacle for the sellers on the Mercari marketplace is the difficulty of setting a competitive price for their product. Accurately predicting product prices is paramount for maximizing profits and staying ahead of the competition, whilst incorrectly setting prices could lead to revenue loss through over/under selling.
+- __Problem__: A major obstacle for the sellers on the Mercari marketplace is the difficulty of setting a competitive price for their product. Accurately setting product prices is paramount for maximizing profits and staying ahead of the competition, whilst incorrectly setting prices could lead to revenue loss through selling too cheap, or delayed sales/no sale by selling too expensive.
 
 - __Approach__: To assist the seller in their price determination, we fine tune a BERT model on a large amount of user inputted descriptions of [products which sold on the Mercari marketplace](https://www.kaggle.com/competitions/mercari-price-suggestion-challenge/data). This model will regress the prices at which the products sold against these descriptions, creating a model that can generate a suggested price based off user inputs. With this "rough" price in mind, the seller can immediately gauge a good understanding of what their product will sell for, without the need to do any external market research.<br><br>
 
@@ -59,14 +59,15 @@ With the pricing model, sellers have a tool that can help them set a price easie
   - __Streamlines the Pricing Process__: Our tool can save time and cost for both parties in deciding what is the optimum price for a product 
  
 - __Disadvantages__ :
-  - __Accuracy__: Should not be taken as the final pricing agent. There is still a significant 
+  - __Accuracy__: Should not be taken as the final pricing agent. There is still a significant gap between the prediction and actual price
   - __Limitations of Data__:  Does not capture many aspects of a product that could impact its selling price, e.g. future trends, seller reputation, age of item, rarity etc... As we know in online shopping, the biggest determination of a product is often the image.
-  - __Limitations with Model__: A lot of our data is originally structured, which is somewhat not utilized by a LLM such as BERT.
+  - __Limitations with Model__: A lot of our data is originally structured, which is somewhat under-utilized by a LLM such as BERT.
 
 - __Next Steps__
-  - __More, Varied Data__: For example we can include product images, utilizing a multimodal input for price prediction. 
-  - __Different Businesses__: We can attempt this method in other marketplaces, for example that of Amazon and Walmart, these will be harder as the range of products they have are even broader.
-  - __Description Generator and Additional Tools__: Given that we have a model that knows which listings sell for the highest price, can we now create a tool which can create descriptions for sellers to maximize their profits? Or another idea is a system that can provide recommendations to sellers on what kind of items that they should procure (e.g. When at the bins at goodwill) in order to turn the greatest profits on their sales. 
+  - __More, Varied Data__: For example we can include product images, utilizing a multimodal input for price prediction.
+  - __Trends__: We need a model that has a deep understanding of whats "trendy" e.g. apple airpods, carhartt jackets
+  - __Different Businesses__: We can attempt this method in other more stable marketplaces, for example that of Amazon and Walmart. These may be harder as the range of products they have are even broader. But the data will be broader
+  - __Enhanced Tools__: Given that we have a model that knows which listings sell for the highest price, can we now create a tool which can optimize descriptions for sellers to maximize their profits? Another idea is a system that can provide recommendations to sellers on what kind of items that they should procure (e.g. When at the bins at goodwill) in order to turn the greatest profits on their sales. 
 
 ---
 ## CODE Demonstration
