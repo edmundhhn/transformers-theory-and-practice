@@ -66,9 +66,6 @@ Our [dataset](https://www.kaggle.com/competitions/mercari-price-suggestion-chall
 
 - __Impact__:
 With the pricing model, sellers have a tool that can help them set a price easier, whilst buyers can also potentially use the tool to determine if the item they are purchasing is priced reasonably. 
-
-- __Advantages__ :
-  - __Streamlines the Pricing Process__: Our tool can save time and cost for both parties in deciding what is the optimum price for a product 
  
 - __Disadvantages__ :
   - __Accuracy__: Should not be taken as the final pricing agent. There is still a significant gap between the prediction and actual price.
