@@ -42,22 +42,22 @@ Our [dataset](https://www.kaggle.com/competitions/mercari-price-suggestion-chall
 
 4. Create a Class for a BERT Regressor which utilizes a regression head. We add a linear layer at the end of the BERT model which uses the last layer weights of the BERT model to regress against a final price prediction
 
-   __Recap:__ BERT's architecture utilizes a multi-layer bidirectional Transformer encoder, which is a type of neural network originally developed for machine translation. This architecture allows BERT to consider the full context of a word by looking at the words that come before and after it, significantly enhancing its ability to understand the nuances of language.
+   __Recap:__ BERT is a a multi-layer bidirectional Transformer encoder. This architecture allows BERT to consider the full context of a word by looking at the words that come before and after it allowing it to understand the nuances of language.
   
-   - Attention mask to account for variable length strings
-   - Dropout layer to prevent overfitting 
+   - Attention mask to account for variable length strings (BERT takes same length)
+   - Dropout layer (10%) to prevent overfitting 
 
    <img width="550" alt="BERT" align=”middle” src="https://github.com/edmundhhn/transformers-theory-and-practice/assets/97279107/4a6fa008-f6b6-4092-844b-8cb4dcd6540f">
 
 6. Select suitable hyperparameters and fine tune the model for 3 epochs on the data, recording the validation loss per epoch. 
 
 7. Test the model on testing dataset and report metrics
-   - Our final RMSE on the model is 51 with MAE of 37. Although this is not extremely accurate we can still gauge a rough idea of the price our item should be selling at
+   - Our final RMSE on the model is 11.22 with MAE of 9.51. Although this is not extremely accurate the seller can still gauge a rough idea of the price our item should be selling at
 
-9. Finalize project with front-end interface
+9. Finalize project with front-end interface in Gradio.
 
 ---
-## CODE Demonstration 
+## CODE and Gradio Demonstration 
 
 ---
 
