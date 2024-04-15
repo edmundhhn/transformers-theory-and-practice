@@ -57,7 +57,7 @@ Our [dataset](https://www.kaggle.com/competitions/mercari-price-suggestion-chall
 9. Finalize project with front-end interface
 
 ---
-## CODE Demonstration with Gradio
+## CODE Demonstration 
 
 ---
 
