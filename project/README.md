@@ -25,7 +25,7 @@ Our [dataset](https://www.kaggle.com/competitions/mercari-price-suggestion-chall
 - __name__ - the title of the listing. Note that we have cleaned the data to remove text that look like prices (e.g. $20) to avoid leakage. These removed prices are represented as [rm]
 - __item_condition_id__ - the condition of the items provided by the seller
 - __category_name__ - category of the listing
-- __brand_name__
+- __brand_name__ - The brand of the item being listed
 - __price__ - the price that the item was sold for. This is the target variable that you will predict. The unit is USD. This column doesn't exist in test.tsv since that is what you will predict.
 - __shipping__ - 1 if shipping fee is paid by seller and 0 by buyer
 - __item_description__ - the full description of the item. Note that we have cleaned the data to remove text that look like prices (e.g. $20) to avoid leakage. These removed prices are represented as [rm]
@@ -36,7 +36,7 @@ Our [dataset](https://www.kaggle.com/competitions/mercari-price-suggestion-chall
 
 ![image](https://github.com/edmundhhn/transformers-theory-and-practice/assets/97279107/24bd0807-b838-492b-94e0-26a8179ac604)
 
-2. Simple preprocessing: Removing mentions of prices, and elements that may not be so relevant to the price.
+2. Simple preprocessing: Remove mentions of price to avoid data leakage
 
 3. Create Dataset and DataLoader objects specific to our dataset.
 
